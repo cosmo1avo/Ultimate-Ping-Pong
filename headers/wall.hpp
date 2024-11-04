@@ -1,8 +1,27 @@
-//
-// Created by cosmo on 11/4/2024.
-//
+#pragma once
+#include "collider.hpp"
+#include <SFML\Graphics.hpp>
 
-#ifndef WALL_HPP
-#define WALL_HPP
+class wall
+{
+public:
+    wall(sf::Texture* texture, sf::Vector2f size, sf::Vector2f position)
+    {
+        body.setSize(size);
+        body.setOrigin(size / 2.0f);
+        body.setTexture(texture);
+        body.setPosition(position);
+    }
 
-#endif //WALL_HPP
+    void draw(sf::RenderWindow& window)
+    {
+        window.draw(body);
+    }
+    collider getcollider()
+    {
+        return collider(body);
+    }
+
+private:
+    sf::RectangleShape body;
+};
