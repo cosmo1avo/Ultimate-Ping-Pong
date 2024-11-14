@@ -1,6 +1,5 @@
 #pragma once
 #include "collider.hpp"
-#include <SFML\Graphics.hpp>
 
 class player
 {
