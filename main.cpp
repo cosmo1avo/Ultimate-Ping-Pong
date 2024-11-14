@@ -21,7 +21,7 @@ int main()
 
    wall wall1(nullptr, sf::Vector2f(400.0f, 200.0f), sf::Vector2f(800.0f,300.0f));
    wall wall2(nullptr, sf::Vector2f(400.0f, 200.0f), sf::Vector2f(50.0f,300.0f));
-   float deltatime=0.0f;
+   float deltatime;
    sf::Clock clock;
 
    window.setFramerateLimit(60);
