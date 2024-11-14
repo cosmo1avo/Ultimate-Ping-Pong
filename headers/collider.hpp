@@ -31,26 +31,27 @@ public:
             {
                 if(deltax > 0.0f)
                 {
-                    move(intersectx * (1.0f - push), 0.0f);
-                    other.move(-intersectx * push, 0.0f);
+                    movef(intersectx * (1.0f - push), 0.0f);
+                    other.movef(-intersectx * push, 0.0f);
                 }
                 else
                 {
-                    move(-intersectx * (1.0f - push), 0.0f);
-                    other.move(intersectx * push, 0.0f);
+                    movef(-intersectx * (1.0f - push), 0.0f);
+                    other.movef(intersectx * push, 0.0f);
+                    // std::cout<<other.getposition().x << " " << other.getposition().y << std::endl;
                 }
             }
             else
             {
                 if(deltay > 0.0f)
                 {
-                    move(0.0f,intersecty * (1.0f - push));
-                    other.move(0.0f,-intersecty * push);
+                    movef(0.0f,intersecty * (1.0f - push));
+                    other.movef(0.0f,-intersecty * push);
                 }
                 else
                 {
-                    move(0.0f,-intersecty * (1.0f - push));
-                    other.move(0.0f, intersecty * push);
+                    movef(0.0f,-intersecty * (1.0f - push));
+                    other.movef(0.0f, intersecty * push);
                 }
             }
 
@@ -58,7 +59,7 @@ public:
         }
         return false;
     }
-    void move(float dx, float dy)
+    void movef(float dx, float dy)
     {
         body.move(dx,dy);
     }

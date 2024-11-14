@@ -1,0 +1,7 @@
+class boing
+{
+public:
+    sf
+};
+
+

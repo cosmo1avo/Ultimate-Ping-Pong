@@ -59,6 +59,7 @@ add_executable(${PROJECT_NAME}
         headers/collider.hpp
         headers/wall.hpp
         headers/global.hpp
+        headers/boing.hpp
 )
 
 include(cmake/CompilerFlags.cmake)

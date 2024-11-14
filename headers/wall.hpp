@@ -22,6 +22,7 @@ public:
         return collider(body);
     }
 
+
 private:
     sf::RectangleShape body;
 };
