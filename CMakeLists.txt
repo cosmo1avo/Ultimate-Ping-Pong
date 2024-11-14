@@ -53,13 +53,7 @@ endif()
 add_executable(${PROJECT_NAME}
         main.cpp
         generated/src/Helper.cpp
-        headers/animation.hpp
-        headers/player.hpp
-        headers/resizeview.hpp
-        headers/collider.hpp
-        headers/wall.hpp
-        headers/global.hpp
-        headers/boing.hpp
+        env_fixes.h
 )
 
 include(cmake/CompilerFlags.cmake)
@@ -101,6 +95,5 @@ endif()
 
 include(cmake/CopyHelper.cmake)
 copy_files(FILES tastatura.txt)
-copy_files(DIRECTORY textures)
 # copy_files(FILES tastatura.txt config.json DIRECTORY images sounds)
 # copy_files(DIRECTORY images sounds)
