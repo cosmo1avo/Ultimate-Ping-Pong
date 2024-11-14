@@ -5,7 +5,7 @@ class player
 {
 public:
     player(sf::Texture* texture, sf::Vector2u imagecount, float switchtime,float speed):
-       animation(texture, imagecount, switchtime)
+       animation1(texture, imagecount, switchtime)
     {
         this->speed = speed;
         row = 0;
@@ -33,8 +33,8 @@ public:
             else
                 faceright = false;
         }
-        animation.update(row,deltatime,faceright);
-        body.setTextureRect(animation.getuvrect());
+        animation1.update(row,deltatime,faceright);
+        body.setTextureRect(animation1.getuvrect());
         body.move(movement);
     }
     void draw(sf::RenderWindow& window)
@@ -52,7 +52,7 @@ public:
     }
 private:
     sf::RectangleShape body;
-    animation animation;
+    animation animation1;
     unsigned int row;
     float speed;
     bool faceright;

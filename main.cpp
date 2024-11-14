@@ -39,6 +39,8 @@ int main()
             case sf::Event::Resized:
                resizeview(window,view);
                break;
+            default:
+               break;
          }
       }
       player.update(deltatime);
