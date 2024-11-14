@@ -21,13 +21,12 @@ int main()
 
    wall wall1(nullptr, sf::Vector2f(400.0f, 200.0f), sf::Vector2f(800.0f,300.0f));
    wall wall2(nullptr, sf::Vector2f(400.0f, 200.0f), sf::Vector2f(50.0f,300.0f));
-   float deltatime;
    sf::Clock clock;
 
    window.setFramerateLimit(60);
    while (window.isOpen())
    {
-      deltatime = clock.restart().asSeconds();
+      float deltatime = clock.restart().asSeconds();
       sf::Event evnt{};
       while (window.pollEvent(evnt))
       {
@@ -44,11 +43,11 @@ int main()
          }
       }
       player.update(deltatime);
-      bool col1=wall1.getcollider().check_collision(player.getcollider(),1.0f);
+      float col1=wall1.getcollider().check_collision(player.getcollider(),1.0f);
       //wall1.getcollider().check_collision(player.getcollider(),1.0f);
       player.move(-col1 * 2.0f, 0.0f);
 
-      bool col2=wall2.getcollider().check_collision(player.getcollider(),1.0f);
+      float col2=wall2.getcollider().check_collision(player.getcollider(),1.0f);
       player.move(col2 * 2.0f, 0.0f);
       view.setCenter(400,400);
       window.clear(sf::Color::Black);
