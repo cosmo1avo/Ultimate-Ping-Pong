@@ -54,9 +54,9 @@ public:
                 }
             }
 
-            return true;
+            return 1.0f;
         }
-        return false;
+        return 0.0f;
     }
     void movef(float dx, float dy)
     {
