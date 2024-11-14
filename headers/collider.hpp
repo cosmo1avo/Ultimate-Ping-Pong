@@ -4,7 +4,7 @@
 class collider
 {
 public:
-    collider(sf::RectangleShape& body):
+    explicit collider(sf::RectangleShape& body):
     body(body)
     {
 
