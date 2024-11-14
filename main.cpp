@@ -43,11 +43,9 @@ int main()
          }
       }
       player.update(deltatime);
-      float col1=wall1.getcollider().check_collision(player.getcollider(),1.0f);
-      //wall1.getcollider().check_collision(player.getcollider(),1.0f);
+      float col1 = static_cast<float>(wall1.getcollider().check_collision(player.getcollider(), 1.0f));
+      float col2 = static_cast<float>(wall2.getcollider().check_collision(player.getcollider(), 1.0f));
       player.move(-col1 * 2.0f, 0.0f);
-
-      float col2=wall2.getcollider().check_collision(player.getcollider(),1.0f);
       player.move(col2 * 2.0f, 0.0f);
       view.setCenter(400,400);
       window.clear(sf::Color::Black);
