@@ -14,9 +14,7 @@ public:
           wall2(nullptr, sf::Vector2f(400.0f, 200.0f), sf::Vector2f(50.0f, 300.0f))
     {
 
-        if (!playertexture.loadFromFile("./txt/test.png")) {
-            throw std::runtime_error("Failed to load texture from './txt/test.png'");
-        }
+        playertexture.loadFromFile("./txt/test.png");
         _player = player(&playertexture, sf::Vector2u(2, 2), 0.5, 100.0f);
 
     }
