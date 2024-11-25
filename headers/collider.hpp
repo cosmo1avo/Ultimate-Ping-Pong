@@ -37,7 +37,6 @@ public:
                 {
                     movef(-intersectx * (1.0f - push), 0.0f);
                     other.movef(intersectx * push, 0.0f);
-                    // std::cout<<other.getposition().x << " " << other.getposition().y << std::endl;
                 }
             }
             else
