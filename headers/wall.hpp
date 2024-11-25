@@ -4,6 +4,7 @@
 class wall
 {
 public:
+
     wall(sf::Texture* texture, sf::Vector2f size, sf::Vector2f position)
     {
         body.setSize(size);
@@ -11,6 +12,7 @@ public:
         body.setTexture(texture);
         body.setPosition(position);
     }
+
     wall(const wall& other)
     {
         body.setSize(other.body.getSize());
@@ -18,6 +20,9 @@ public:
         body.setTexture(other.body.getTexture());
         body.setPosition(other.body.getPosition());
     }
+
+    ~wall()
+    {}
 
     void draw(sf::RenderWindow& window)
     {
