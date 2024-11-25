@@ -9,18 +9,13 @@
 #include "headers/resizeview.hpp"
 #include "headers/collider.hpp"
 #include "headers/wall.hpp"
+#include "headers/engine.hpp"
 
 int main()
 {
    sf::RenderWindow window(sf::VideoMode(800, 800), "Ultimate Ping-Pong");
    sf::View view(sf::Vector2f(0.0f,0.0f),sf::Vector2f(VIEW_HEIGHT,VIEW_HEIGHT));
-   sf::Texture playertexture;
-   playertexture.loadFromFile("./textures/test.png");
-
-   player player(&playertexture, sf::Vector2u(2,2), 0.5, 100.0f);
-
-   wall wall1(nullptr, sf::Vector2f(400.0f, 200.0f), sf::Vector2f(800.0f,300.0f));
-   wall wall2(nullptr, sf::Vector2f(400.0f, 200.0f), sf::Vector2f(50.0f,300.0f));
+   engine _engine(window, view);
    sf::Clock clock;
 
    window.setFramerateLimit(60);
@@ -42,17 +37,10 @@ int main()
                break;
          }
       }
-      player.update(deltatime);
-      float col1 = static_cast<float>(wall1.getcollider().check_collision(player.getcollider(), 1.0f));
-      float col2 = static_cast<float>(wall2.getcollider().check_collision(player.getcollider(), 1.0f));
-      player.move(-col1 * 2.0f, 0.0f);
-      player.move(col2 * 2.0f, 0.0f);
-      view.setCenter(400,400);
+
       window.clear(sf::Color::Black);
+      _engine.update(deltatime);
       window.setView(view);
-      player.draw(window);
-      wall1.draw(window);
-      wall2.draw(window);
       window.display();
    }
 

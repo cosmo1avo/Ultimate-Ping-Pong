@@ -53,7 +53,7 @@ public:
 private:
     sf::RectangleShape body;
     animation animation1;
-    unsigned int row;
+    int row;
     float speed;
     bool faceright;
 

@@ -54,6 +54,8 @@ add_executable(${PROJECT_NAME}
         main.cpp
         generated/src/Helper.cpp
         env_fixes.h
+        headers/engine.hpp
+        headers/animation.hpp
 )
 
 include(cmake/CompilerFlags.cmake)
@@ -95,5 +97,6 @@ endif()
 
 include(cmake/CopyHelper.cmake)
 copy_files(FILES tastatura.txt)
+copy_files(DIRECTORY txt)
 # copy_files(FILES tastatura.txt config.json DIRECTORY images sounds)
 # copy_files(DIRECTORY images sounds)
