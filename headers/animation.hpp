@@ -24,7 +24,7 @@ public:
         if (totaltime >= switchtime) {
             totaltime -= switchtime;
             currentimage.x++;
-            if (currentimage.x >= static_cast<int>(imagecount.x)) {
+            if (currentimage.x >=imagecount.x) {
                 currentimage.x = 0;
             }
         }
