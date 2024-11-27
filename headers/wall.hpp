@@ -21,6 +21,19 @@ public:
         body.setPosition(other.body.getPosition());
     }
 
+    wall& operator=(const wall& other)
+    {
+        if (this == &other) 
+            return *this;
+
+        body.setSize(other.body.getSize());
+        body.setOrigin(other.body.getOrigin());
+        body.setTexture(other.body.getTexture());
+        body.setPosition(other.body.getPosition());
+
+        return *this;
+    }
+
     ~wall()
     {}
 

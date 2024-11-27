@@ -40,7 +40,7 @@ public:
         if (col2 != 0.0f) {
             _player1.move(col2 * 2.0f, 0.0f);
         }
-        if (col3 != 0.0f) 
+        if (col3 != 0.0f)
             _player2.move(-col3 * 2.0f, 0.0f);
 
        if (col4 != 0.0f)
