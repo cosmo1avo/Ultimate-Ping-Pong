@@ -4,10 +4,9 @@
 class wall
 {
 public:
-
     wall(sf::Texture* texture, sf::Vector2f size, sf::Vector2f _position)
+        : position(_position) // Initialize position in the initializer list
     {
-        position = _position;
         body.setSize(size);
         body.setOrigin(size / 2.0f);
         body.setTexture(texture);
@@ -15,6 +14,7 @@ public:
     }
 
     wall(const wall& other)
+        : position(other.position)
     {
         body.setSize(other.body.getSize());
         body.setOrigin(other.body.getOrigin());
@@ -24,9 +24,10 @@ public:
 
     wall& operator=(const wall& other)
     {
-        if (this == &other) 
+        if (this == &other)
             return *this;
 
+        position = other.position;
         body.setSize(other.body.getSize());
         body.setOrigin(other.body.getOrigin());
         body.setTexture(other.body.getTexture());
@@ -35,8 +36,7 @@ public:
         return *this;
     }
 
-    ~wall()
-    {}
+    ~wall() = default;
 
     void draw(sf::RenderWindow& window)
     {
@@ -50,10 +50,9 @@ public:
 
     friend std::ostream& operator<<(std::ostream& stream, const wall& _wall)
     {
-        stream << "wall position: " <<" X:" <<  _wall.position.x << " Y:" << _wall.position.y;
+        stream << "wall position: " << " X:" << _wall.position.x << " Y:" << _wall.position.y;
         return stream;
     }
-
 
 private:
     sf::RectangleShape body;

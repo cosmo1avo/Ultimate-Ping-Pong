@@ -80,7 +80,7 @@ public:
 private:
     sf::RectangleShape body;
     animation animation1;
-    int nr;         
+    int nr;
     float speed, x;
     int row;
     bool faceright;
