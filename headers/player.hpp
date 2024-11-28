@@ -20,8 +20,7 @@ public:
     void update(float deltatime)
     {
         movement.x = 0.0f;
-        movement.y = 0.0f;
-        if(nr==1)
+        if (nr == 1)
         {
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
                 movement.x -= speed * deltatime;
@@ -72,18 +71,18 @@ public:
     friend std::ostream& operator<<(std::ostream& stream, const player& _player)
     {
         stream << "position: " << _player.getPosition() << "\n";
-        stream << "faceright:" << _player.faceright <<"\n";
-        stream << "row: " <<_player.row << "\n";
-        stream <<"nr: " <<_player.nr;
+        stream << "faceright: " << _player.faceright << "\n";
+        stream << "row: " << _player.row << "\n";
+        stream << "nr: " << _player.nr;
         return stream;
     }
 
 private:
     sf::RectangleShape body;
     animation animation1;
-    int row;
+    int nr;         
     float speed, x;
+    int row;
     bool faceright;
-    int nr;
     sf::Vector2f movement{ 0.0f, 0.0f };
 };
