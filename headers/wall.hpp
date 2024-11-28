@@ -5,8 +5,9 @@ class wall
 {
 public:
 
-    wall(sf::Texture* texture, sf::Vector2f size, sf::Vector2f position)
+    wall(sf::Texture* texture, sf::Vector2f size, sf::Vector2f _position)
     {
+        position = _position;
         body.setSize(size);
         body.setOrigin(size / 2.0f);
         body.setTexture(texture);
@@ -47,6 +48,14 @@ public:
         return collider(body);
     }
 
+    friend std::ostream& operator<<(std::ostream& stream, const wall& _wall)
+    {
+        stream << "wall position: " <<" X:" <<  _wall.position.x << " Y:" << _wall.position.y;
+        return stream;
+    }
+
+
 private:
     sf::RectangleShape body;
+    sf::Vector2f position;
 };

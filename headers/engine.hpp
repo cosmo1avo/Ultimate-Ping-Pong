@@ -28,7 +28,6 @@ public:
         deltatime = clock.restart().asSeconds();
         _player1.update(deltatime);
         _player2.update(deltatime);
-
         float col1 = static_cast<float>(wall1.getcollider().check_collision(_player1.getcollider(), 1.0f));
         float col2 = static_cast<float>(wall2.getcollider().check_collision(_player1.getcollider(), 1.0f));
         float col3 = static_cast<float>(wall1.getcollider().check_collision(_player2.getcollider(), 1.0f));
@@ -53,7 +52,14 @@ public:
         wall1.draw(window);
         wall2.draw(window);
     }
-
+    friend std::ostream& operator<<(std::ostream& stream, const engine& _engine)
+    {
+        stream << "Player 1: " << _engine._player1 << std::endl;
+        stream << "Player 2: " << _engine._player2 << std::endl;
+        stream << "Wall 1: " << _engine.wall1 << std::endl;
+        stream << "Wall 2: " << _engine.wall2 << std::endl;
+        return stream;
+    }
 private:
     sf::Texture playertexture1;
     sf::Texture playertexture2;
