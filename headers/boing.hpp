@@ -22,8 +22,8 @@ public:
         {
             movement.x = speed.x * deltatime;
             movement.y = speed.y * deltatime;
-            x += movement.x;  // Update x using the class member
-            y += movement.y;  // Update y using the class member
+            x += movement.x;
+            y += movement.y;
             body.move(movement);
         }
     }
