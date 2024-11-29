@@ -99,7 +99,7 @@ public:
 private:
     sf::RectangleShape body;
     animation animation1;
-    int nr, row;;
+    int nr, row;
     float speed, x;
     bool faceright, blocat;
     sf::Vector2f movement{ 0.0f, 0.0f };

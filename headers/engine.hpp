@@ -37,7 +37,6 @@ public:
 
         static bool _glued = false;
         static arrow arrow;
-        static const player* cur=nullptr;
         sf::Vector2f velocity(0.0f,0.0f);
         if(start)
         {
@@ -74,7 +73,6 @@ public:
             start=false;
             _glued = true;
             ball.attach();
-            cur=&_player1;
             ball.setPosition(_player1.getPosition().x, _player1.getPosition().y + 61);
             arrow.setPosition(ball.getPosition());
             _player1.blocaj(true);
@@ -85,7 +83,6 @@ public:
             start=false;
             _glued = true;
             ball.attach();
-            cur=&_player2;
             ball.setPosition(_player2.getPosition().x, _player2.getPosition().y - 61);
             arrow.setPosition(ball.getPosition());
             _player2.blocaj(true);

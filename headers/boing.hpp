@@ -5,7 +5,7 @@ class boing
 {
 public:
     boing(sf::Texture* texture, sf::Vector2f size,sf::Vector2f speed)
-        :glue(false),x(0),y(0)
+        :x(0),y(0),glue(false)
     {
         this->speed = speed;
         body.setSize(size);
