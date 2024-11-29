@@ -4,33 +4,29 @@
 class boing
 {
 public:
-    boing(sf::Texture* texture, sf::Vector2f size,sf::Vector2f speed)
-        :x(0),y(0),glue(false)
+    boing(sf::Texture* texture, sf::Vector2f size, sf::Vector2f speed)
+        : x(0), y(0), glue(false)
     {
         this->speed = speed;
         body.setSize(size);
         body.setOrigin(size / 2.0f);
         body.setTexture(texture);
-        body.setPosition(400,400);
+        body.setPosition(400, 400);
     }
 
     void update(float deltatime)
     {
         movement.x = 0.0f;
         movement.y = 0.0f;
-        if(!glue)
-            {
+        if (!glue)
+        {
             movement.x = speed.x * deltatime;
             movement.y = speed.y * deltatime;
-            x += movement.x;
-            y += movement.y;
-            body.move(movement);
-            x += movement.x;
-            y += movement.y;
+            x += movement.x;  // Update x using the class member
+            y += movement.y;  // Update y using the class member
             body.move(movement);
         }
-        }
-
+    }
 
     void draw(sf::RenderWindow& window)
     {
@@ -66,19 +62,19 @@ public:
 
     void attach()
     {
-        glue=true;
-        speed={0.0f,0.0f};
+        glue = true;
+        speed = { 0.0f, 0.0f };
     }
 
     void deglue()
     {
-        glue=false;
+        glue = false;
     }
 
 private:
     sf::RectangleShape body;
     sf::Vector2f movement{ 0.0f, 0.0f };
-    float x,y;
-    sf::Vector2f speed{0.0f, 0.0f};
+    float x, y;
+    sf::Vector2f speed{ 0.0f, 0.0f };
     bool glue;
 };
