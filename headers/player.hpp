@@ -5,7 +5,7 @@ class player
 {
 public:
     player(sf::Texture* texture, sf::Vector2u imagecount, float switchtime, float speed, sf::Vector2f startPosition, int nr)
-        : animation1(texture, imagecount, switchtime), nr(nr), x(0)
+        : animation1(texture, imagecount, switchtime), nr(nr), x_position(0)
     {
         this->speed = speed;
         row = 0;
@@ -20,7 +20,7 @@ public:
     void update(float deltatime)
     {
         movement.x = 0.0f;
-        if(!blocat)
+        if (!blocat)
         {
             if (nr == 1)
             {
@@ -44,13 +44,12 @@ public:
                 row = 1;
                 faceright = (movement.x > 0.0f);
             }
-            x += movement.x;
+            x_position += movement.x;
             body.move(movement);
         }
         animation1.update(row, deltatime, faceright);
         body.setTextureRect(animation1.getuvrect());
     }
-
 
     void draw(sf::RenderWindow& window)
     {
@@ -69,8 +68,8 @@ public:
 
     void setPosition(float _x)
     {
-        body.setPosition(x, body.getPosition().y);
-        this->x = _x;
+        body.setPosition(_x, body.getPosition().y);
+        this->x_position = _x;
     }
 
     sf::Vector2f getPosition() const {
@@ -84,7 +83,7 @@ public:
 
     [[nodiscard]] float getx() const
     {
-        return x;
+        return x_position;
     }
 
     friend std::ostream& operator<<(std::ostream& stream, const player& _player)
@@ -100,7 +99,7 @@ private:
     sf::RectangleShape body;
     animation animation1;
     int nr, row;
-    float speed, x;
+    float speed, x_position;
     bool faceright, blocat;
     sf::Vector2f movement{ 0.0f, 0.0f };
 };
