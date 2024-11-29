@@ -4,7 +4,7 @@
 class boing
 {
 public:
-    boing(sf::Texture* texture, sf::Vector2f size, sf::Vector2f speed)
+    boing(sf::Texture* texture, sf::Vector2f size,sf::Vector2f speed)
         : x(0), y(0), glue(false)
     {
         this->speed = speed;
@@ -16,15 +16,14 @@ public:
 
     void update(float deltatime)
     {
-        movement.x = 0.0f;
-        movement.y = 0.0f;
+        sf::Vector2f local_movement{ 0.0f, 0.0f };
         if (!glue)
         {
-            movement.x = speed.x * deltatime;
-            movement.y = speed.y * deltatime;
-            x += movement.x;
-            y += movement.y;
-            body.move(movement);
+            local_movement.x = speed.x * deltatime;
+            local_movement.y = speed.y * deltatime;
+            x += local_movement.x;
+            y += local_movement.y;
+            body.move(local_movement);
         }
     }
 
