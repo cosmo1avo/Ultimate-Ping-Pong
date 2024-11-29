@@ -5,7 +5,7 @@ class wall
 {
 public:
     wall(sf::Texture* texture, sf::Vector2f size, sf::Vector2f _position)
-        : position(_position) // Initialize position in the initializer list
+        : position(_position)
     {
         body.setSize(size);
         body.setOrigin(size / 2.0f);

@@ -56,6 +56,8 @@ add_executable(${PROJECT_NAME}
         env_fixes.h
         headers/engine.hpp
         headers/animation.hpp
+        headers/boing.hpp
+        headers/arrow.hpp
 )
 
 include(cmake/CompilerFlags.cmake)

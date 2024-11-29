@@ -20,33 +20,37 @@ public:
     void update(float deltatime)
     {
         movement.x = 0.0f;
-        if (nr == 1)
+        if(!blocat)
         {
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-                movement.x -= speed * deltatime;
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
-                movement.x += speed * deltatime;
-        }
-        else
-        {
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-                movement.x -= speed * deltatime;
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-                movement.x += speed * deltatime;
-        }
+            if (nr == 1)
+            {
+                if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+                    movement.x -= speed * deltatime;
+                if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+                    movement.x += speed * deltatime;
+            }
+            else
+            {
+                if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+                    movement.x -= speed * deltatime;
+                if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+                    movement.x += speed * deltatime;
+            }
 
-        if (movement.x == 0.0f)
-            row = 0;
-        else
-        {
-            row = 1;
-            faceright = (movement.x > 0.0f);
+            if (movement.x == 0.0f)
+                row = 0;
+            else
+            {
+                row = 1;
+                faceright = (movement.x > 0.0f);
+            }
+            x += movement.x;
+            body.move(movement);
         }
-        x += movement.x;
         animation1.update(row, deltatime, faceright);
         body.setTextureRect(animation1.getuvrect());
-        body.move(movement);
     }
+
 
     void draw(sf::RenderWindow& window)
     {
@@ -63,14 +67,29 @@ public:
         body.move(dx, dy);
     }
 
-    [[nodiscard]] float getPosition() const
+    void setPosition(float x)
+    {
+        body.setPosition(x, body.getPosition().y);
+        this->x = x;
+    }
+
+    sf::Vector2f getPosition() const {
+        return body.getPosition();
+    }
+
+    void blocaj(bool b)
+    {
+        blocat = b;
+    }
+
+    [[nodiscard]] float getx() const
     {
         return x;
     }
 
     friend std::ostream& operator<<(std::ostream& stream, const player& _player)
     {
-        stream << "position: " << _player.getPosition() << "\n";
+        stream << "position: " << _player.getx() << "\n";
         stream << "faceright: " << _player.faceright << "\n";
         stream << "row: " << _player.row << "\n";
         stream << "nr: " << _player.nr;
@@ -80,9 +99,8 @@ public:
 private:
     sf::RectangleShape body;
     animation animation1;
-    int nr;
+    int nr, row;;
     float speed, x;
-    int row;
-    bool faceright;
+    bool faceright, blocat;
     sf::Vector2f movement{ 0.0f, 0.0f };
 };
