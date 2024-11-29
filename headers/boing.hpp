@@ -75,10 +75,6 @@ public:
         glue=false;
     }
 
-    bool glued() const
-    {
-        return glue;
-    }
 private:
     sf::RectangleShape body;
     sf::Vector2f movement{ 0.0f, 0.0f };

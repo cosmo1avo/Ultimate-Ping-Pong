@@ -37,7 +37,7 @@ public:
 
         static bool _glued = false;
         static arrow arrow;
-        static player* cur=nullptr;
+        static const player* cur=nullptr;
         sf::Vector2f velocity(0.0f,0.0f);
         if(start)
         {
@@ -102,7 +102,7 @@ public:
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
                 float radians = angle * 3.14159f / 180.0f;
                 float maxspeed = 300.0f;
-                sf::Vector2f velocity(std::cos(radians) * maxspeed,std::sin(radians) * maxspeed );
+                velocity = sf::Vector2f(std::cos(radians) * maxspeed,std::sin(radians) * maxspeed );
                 ball.setVelocity(velocity);
                 ball.deglue();
                 _glued = false;

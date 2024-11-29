@@ -22,9 +22,6 @@ public:
         window.draw(_arrow);
     }
 
-    float getAngle() const {
-        return _arrow.getRotation();
-    }
 
 private:
     sf::RectangleShape _arrow;
