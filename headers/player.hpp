@@ -5,11 +5,9 @@ class player
 {
 public:
     player(sf::Texture* texture, sf::Vector2u imagecount, float switchtime, float speed, sf::Vector2f startPosition, int nr)
-        : animation1(texture, imagecount, switchtime), nr(nr), x(0)
+        : animation1(texture, imagecount, switchtime), nr(nr), pos_x(0), row(0), faceright(true), blocat(false)
     {
         this->speed = speed;
-        row = 0;
-        faceright = true;
 
         body.setSize(sf::Vector2f(100.0f, 100.0f));
         body.setOrigin(body.getSize() / 2.0f);
@@ -44,13 +42,12 @@ public:
                 row = 1;
                 faceright = (movement.x > 0.0f);
             }
-            x += movement.x;
+            pos_x += movement.x;
             body.move(movement);
         }
         animation1.update(row, deltatime, faceright);
         body.setTextureRect(animation1.getuvrect());
     }
-
 
     void draw(sf::RenderWindow& window)
     {
@@ -67,10 +64,10 @@ public:
         body.move(dx, dy);
     }
 
-    void setPosition(float _x)
+    void setPosition(float x)
     {
         body.setPosition(x, body.getPosition().y);
-        this->x = _x;
+        this->pos_x = x;
     }
 
     sf::Vector2f getPosition() const {
@@ -82,14 +79,14 @@ public:
         blocat = b;
     }
 
-    [[nodiscard]] float getx() const
+    [[nodiscard]] float getPosX() const
     {
-        return x;
+        return pos_x;
     }
 
     friend std::ostream& operator<<(std::ostream& stream, const player& _player)
     {
-        stream << "position: " << _player.getx() << "\n";
+        stream << "position: " << _player.getPosX() << "\n";
         stream << "faceright: " << _player.faceright << "\n";
         stream << "row: " << _player.row << "\n";
         stream << "nr: " << _player.nr;
@@ -100,7 +97,7 @@ private:
     sf::RectangleShape body;
     animation animation1;
     int nr, row;
-    float speed, x;
+    float speed, pos_x;
     bool faceright, blocat;
     sf::Vector2f movement{ 0.0f, 0.0f };
 };
