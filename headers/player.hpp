@@ -67,10 +67,10 @@ public:
         body.move(dx, dy);
     }
 
-    void setPosition(float x)
+    void setPosition(float _x)
     {
         body.setPosition(x, body.getPosition().y);
-        this->x = x;
+        this->x = _x;
     }
 
     sf::Vector2f getPosition() const {
