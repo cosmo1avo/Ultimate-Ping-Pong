@@ -45,4 +45,4 @@ runs:
     - name: Cppcheck
       shell: bash
       run: |
-        cppcheck --check-level=exhaustive
+        bash ./scripts/run_cppcheck.sh
