@@ -1,6 +1,8 @@
 #include <iostream>
+#include <array>
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
+#include <Helper.h>
 #include "headers/animation.hpp"
 #include "headers/player.hpp"
 #include "headers/global.hpp"
@@ -12,50 +14,35 @@
 int main()
 {
    sf::RenderWindow window(sf::VideoMode(800, 800), "Ultimate Ping-Pong");
-   sf::View view(sf::Vector2f(0.0f, 0.0f), sf::Vector2f(VIEW_HEIGHT, VIEW_HEIGHT));
+   sf::View view(sf::Vector2f(0.0f,0.0f),sf::Vector2f(VIEW_HEIGHT,VIEW_HEIGHT));
    engine _engine(window, view);
    sf::Clock clock;
 
    window.setFramerateLimit(60);
-
    while (window.isOpen())
    {
       float deltatime = clock.restart().asSeconds();
       sf::Event evnt{};
-
       while (window.pollEvent(evnt))
       {
          switch (evnt.type)
          {
             case sf::Event::Closed:
                window.close();
-            break;
-
+               break;
             case sf::Event::Resized:
-               resizeview(window, view);
-            break;
-
-            case sf::Event::KeyPressed:
-               if (evnt.key.code == sf::Keyboard::Escape)
-               {
-                  window.close();
-               }
-            break;
-
+               resizeview(window,view);
+               break;
             default:
                break;
          }
+         std::cout << _engine << std::endl;
       }
 
-      _engine.update(deltatime);
-
       window.clear(sf::Color::Black);
-
-      window.setView(view);
       _engine.update(deltatime);
-
+      window.setView(view);
       window.display();
    }
-
    return 0;
 }
