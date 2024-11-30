@@ -9,5 +9,5 @@ cppcheck --enable=all \
     --suppress=missingIncludeSystem \
     --suppress=unmatchedSuppression \
     --suppress=useStlAlgorithm \
-    --suppress=normalCheckLevelMaxBranches
+    --suppress=normalCheckLevelMaxBranches \
     --error-exitcode=1
