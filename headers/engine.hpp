@@ -95,13 +95,9 @@ public:
 
         if (_glued)
         {
-            static float angle = 0.0f;
-            static float direction = 1;
-            static float speeddirection = 1;
-            float minangle = 0.0f;
-            float maxangle = 0.0f;
             if(!speedselect)
             {
+                static float speeddirection = 1;
                 ballspeed += speeddirection * 100 * deltatime;
                 if (ballspeed > 500.0f)
                 {
@@ -122,26 +118,34 @@ public:
             }
             else if(speedselect == 1)
             {
+                static float angle = 0.0f;
+                static float direction = 1;
+                angle += direction * 100 * deltatime;
                 if (cur == 1)
                 {
-                    minangle = 30.0f;
-                    maxangle = 150.0f;
+                    if (angle > 150.0f)
+                    {
+                        angle = 150.0f;
+                        direction = -1;
+                    }
+                    else if (angle < 30.0f)
+                    {
+                        angle = 30.0f;
+                        direction = 1;
+                    }
                 }
                 else if (cur == 2)
                 {
-                    minangle = 210.0f;
-                    maxangle = 330.0f;
-                }
-                angle += direction * 100 * deltatime;
-                if (angle > maxangle)
-                {
-                    angle = maxangle;
-                    direction = -1;
-                }
-                else if (angle < minangle)
-                {
-                    angle = minangle;
-                    direction = 1;
+                    if (angle > 330.0f)
+                    {
+                        angle = 330.0f;
+                        direction = -1;
+                    }
+                    else if (angle < 210.0f)
+                    {
+                        angle = 210.0f;
+                        direction = 1;
+                    }
                 }
                 arrow.setPosition(ball.getPosition());
                 arrow.setRotation(angle);
