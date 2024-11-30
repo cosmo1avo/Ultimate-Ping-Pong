@@ -3,6 +3,7 @@
 #include "player.hpp"
 #include "boing.hpp"
 #include "arrow.hpp"
+#include "speedmeter.hpp"
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
 
@@ -27,6 +28,7 @@ public:
         nettexture.loadFromFile("./txt/red.jpg");
         balltexture.loadFromFile("./txt/blue.png");
 
+
     }
 
     void update(float deltatime = 0.0f)
@@ -37,6 +39,7 @@ public:
 
         static bool _glued = false;
         static arrow arrow;
+        static speedmeter speedmeter;
         sf::Vector2f velocity(0.0f,0.0f);
         if(start)
         {
@@ -71,6 +74,7 @@ public:
         if(!_glued && col5 != 0.0f)
         {
             start=false;
+            cur=1;
             _glued = true;
             ball.attach();
             ball.setPosition(_player1.getPosition().x, _player1.getPosition().y + 61);
@@ -81,6 +85,7 @@ public:
         if(!_glued && col6 != 0.0f)
         {
             start=false;
+            cur=2;
             _glued = true;
             ball.attach();
             ball.setPosition(_player2.getPosition().x, _player2.getPosition().y - 61);
@@ -88,27 +93,75 @@ public:
             _player2.blocaj(true);
         }
 
-        if (_glued) {
+        if (_glued)
+        {
             static float angle = 0.0f;
-            arrow.setPosition(ball.getPosition());
-            arrow.setRotation(angle);
+            static float direction = 1;
+            static float speeddirection = 1;
+            float minangle = 0.0f;
+            float maxangle = 0.0f;
+            if(!speedselect)
+            {
+                ballspeed += speeddirection * 100 * deltatime;
+                if (ballspeed > 500.0f)
+                {
+                    ballspeed = 500.0f;
+                    speeddirection = -1.0f;
+                }
+                else if (ballspeed < 250.0f)
+                {
+                    ballspeed = 250.0f;
+                    speeddirection = 1.0f;
+                }
 
-            angle += 100 * deltatime;
-            if (angle > 360.0f) angle -= 360.0f;
+                speedmeter.setX(ball.getPosition().x +50);
+                speedmeter.setY(ball.getPosition().y - 200 + ballspeed/2);
 
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
-                float radians = angle * 3.14159f / 180.0f;
-                float maxspeed = 300.0f;
-                velocity = sf::Vector2f(std::cos(radians) * maxspeed,std::sin(radians) * maxspeed );
-                ball.setVelocity(velocity);
-                ball.deglue();
-                _glued = false;
-
-                _player1.blocaj(false);
-                _player2.blocaj(false);
+                if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
+                    speedselect = 1;
             }
-        }
+            else if(speedselect == 1)
+            {
+                if (cur == 1)
+                {
+                    minangle = 30.0f;
+                    maxangle = 150.0f;
+                }
+                else if (cur == 2)
+                {
+                    minangle = 210.0f;
+                    maxangle = 330.0f;
+                }
+                angle += direction * 100 * deltatime;
+                if (angle > maxangle)
+                {
+                    angle = maxangle;
+                    direction = -1;
+                }
+                else if (angle < minangle)
+                {
+                    angle = minangle;
+                    direction = 1;
+                }
+                arrow.setPosition(ball.getPosition());
+                arrow.setRotation(angle);
 
+                if (sf::Keyboard::isKeyPressed(sf::Keyboard::E))
+                {
+                    float radians = angle * 3.14159f / 180.0f;
+                    velocity = sf::Vector2f(std::cos(radians) * ballspeed,std::sin(radians) * ballspeed );
+                    ball.setVelocity(velocity);
+                    ball.deglue();
+                    _glued = false;
+
+                    _player1.blocaj(false);
+                    _player2.blocaj(false);
+                    speedselect = 0;
+                }
+
+            }
+
+        }
         view.setCenter(400, 400);
         window.setView(view);
 
@@ -121,7 +174,10 @@ public:
 
         if(_glued)
         {
-            arrow.draw(window);
+            if (speedselect == 0)
+                speedmeter.draw(window);
+            if (speedselect == 1)
+                arrow.draw(window);
         }
 
     }
@@ -147,6 +203,9 @@ private:
     boing ball;
     bool start = true;
     int ran = rand() %2;
+    int cur = 0;
+    float ballspeed = 75.0f;
+    int speedselect = 0;
     sf::RenderWindow& window;
     sf::View& view;
     sf::Clock clock;

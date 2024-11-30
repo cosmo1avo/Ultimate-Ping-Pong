@@ -36,7 +36,7 @@ int main()
             default:
                break;
          }
-         std::cout << _engine << std::endl;
+         //std::cout << _engine << std::endl;
       }
 
       window.clear(sf::Color::Black);

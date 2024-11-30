@@ -58,6 +58,7 @@ add_executable(${PROJECT_NAME}
         headers/animation.hpp
         headers/boing.hpp
         headers/arrow.hpp
+        headers/speedmeter.hpp
 )
 
 include(cmake/CompilerFlags.cmake)
