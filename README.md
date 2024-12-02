@@ -10,4 +10,4 @@ Pe masa de ping-pong există un fileu. Dacă un jucător alege să atace cu o pu
 
 Mod de joc:
 La începutul unui meci va fi ales un număr între 1 și 2. În acel moment, P1 va alege și el un număr dintre 1 și 2. Automat, P2 va avea numărul care nu a fost ales de P1. Cine are numărul ales aleatoriu va începe jocul.
-Cine începe alege mai întâi zona în care dorește să atace și apoi puterea. Pentru a contraataca, celălalt jucător trebuie să miște paleta în dreptul mingii și să aleagă puterea.
+Cine începe alege mai întâi pueterea cu care o sa arunce mingea (cu tasta Q), iar apoi directia in care se va duce mingea (cu tasta E). Pentru a contraataca, celălalt jucător trebuie să miște paleta în dreptul mingii și să aleagă puterea si directia.

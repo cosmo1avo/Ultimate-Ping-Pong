@@ -58,6 +58,8 @@ public:
         float col4 = static_cast<float>(wall2.getcollider().check_collision(_player2.getcollider(), 1.0f));
         float col5 = static_cast<float>(ball.getcollider().check_collision(_player1.getcollider(), 1.0f));
         float col6 = static_cast<float>(ball.getcollider().check_collision(_player2.getcollider(), 1.0f));
+        float col7 = static_cast<float>(ball.getcollider().check_collision(wall1.getcollider(), 1.0f));
+        float col8 = static_cast<float>(ball.getcollider().check_collision(wall2.getcollider(), 1.0f));
 
         if (col1 != 0.0f)
             _player1.setPosition(695.0f);
@@ -70,6 +72,13 @@ public:
 
         if (col4 != 0.0f)
             _player2.setPosition(105.0f);
+
+        if(col8 != 0.0f || col7 != 0.0f || ball.getPosition().y >800.0f || ball.getPosition().y <0.0f)
+            {
+                ran = rand() %2;
+                ball.setPosition(400.0f, 400.0f);
+                start = true;
+            }
 
         if(!_glued && col5 != 0.0f)
         {
