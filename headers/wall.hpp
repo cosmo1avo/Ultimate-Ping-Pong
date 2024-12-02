@@ -43,6 +43,12 @@ public:
         window.draw(body);
     }
 
+    void settextoffset(int x, int y, int width, int height) {
+            body.setTextureRect(sf::IntRect(x, y, width, height));
+
+    }
+
+
     collider getcollider()
     {
         return collider(body);

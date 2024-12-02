@@ -9,5 +9,5 @@ Fiecare jucător are 5 serve, iar în cazul în care se ajunge la avantaje (ambi
 Pe masa de ping-pong există un fileu. Dacă un jucător alege să atace cu o putere prea mică, acesta va lovi fileul și va pierde punctul. Dacă, doar în momentul servei, mingea atinge fileul, serva va fi repetată. De asemenea, dacă un jucător alege să atace cu o putere prea mare, acesta va trimite mingea în afara terenului și va pierde punctul.
 
 Mod de joc:
-La începutul unui meci va fi ales un număr între 1 și 2. În acel moment, P1 va alege și el un număr dintre 1 și 2. Automat, P2 va avea numărul care nu a fost ales de P1. Cine are numărul ales aleatoriu va începe jocul.
-Cine începe alege mai întâi pueterea cu care o sa arunce mingea (cu tasta Q), iar apoi directia in care se va duce mingea (cu tasta E). Pentru a contraataca, celălalt jucător trebuie să miște paleta în dreptul mingii și să aleagă puterea si directia.
+La începutul unui meci va fi ales aleatoriu de catre joc un număr între 1 și 2. Acest numar va determina in directia cui se va duce mingea prima data. Pentru a incepe jocul trebuie apasata tasta "Space".
+Cine începe alege mai întâi puterea cu care o sa arunce mingea (cu tasta "Q"), iar apoi directia in care se va duce mingea (cu tasta "E"). Pentru a contraataca, celălalt jucător trebuie să miște paleta în dreptul mingii și să aleagă puterea si directia.
