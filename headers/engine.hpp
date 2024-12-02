@@ -59,11 +59,12 @@ public:
         float col7 = static_cast<float>(ball.getcollider().check_collision(wall1.getcollider(), 1.0f));
         float col8 = static_cast<float>(ball.getcollider().check_collision(wall2.getcollider(), 1.0f));
 
-        if (counter1 == 3450 || counter2 == 3450) {
-            serves = 0;
+        if (counter1 == 3450 || counter2 == 3450)
+        {
             _glued = false;
 
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
+                serves = 0;
                 ran = rand() % 2;
                 startround = true;
                 ball.deglue();
@@ -281,8 +282,12 @@ public:
         wall2.draw(window);
         net.draw(window);
         ball.draw(window);
-        score1.draw(window);
-        score2.draw(window);
+
+        if (serves != 0)
+        {
+            score1.draw(window);
+            score2.draw(window);
+        }
 
         if(_glued)
         {
@@ -322,8 +327,8 @@ private:
     int cur = 0;
     float ballspeed = 75.0f;
     int speedselect = 0;
-    int counter1 = 3150;
-    int counter2 = 3150;
+    int counter1 = 3450;
+    int counter2 = 3450;
     int serves = 0;
     sf::RenderWindow& window;
     sf::View& view;
