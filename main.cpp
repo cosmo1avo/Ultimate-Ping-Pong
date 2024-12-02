@@ -13,8 +13,8 @@
 
 int main()
 {
-   sf::RenderWindow window(sf::VideoMode(800, 800), "Ultimate Ping-Pong");
-   sf::View view(sf::Vector2f(0.0f,0.0f),sf::Vector2f(VIEW_HEIGHT,VIEW_HEIGHT));
+   sf::RenderWindow window(sf::VideoMode(1400, 1000), "Ultimate Ping-Pong");
+   sf::View view(sf::Vector2f(0.0f,0.0f),sf::Vector2f(VIEW_WIDTH,VIEW_HEIGHT));
    engine _engine(window, view);
    sf::Clock clock;
 

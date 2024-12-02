@@ -11,21 +11,21 @@ class engine
 {
 public:
     engine(sf::RenderWindow& _window, sf::View& _view)
-    : _player1(&playertexture1, sf::Vector2u(2, 2), 0.5, 400.0f, sf::Vector2f(400.0f, 75.0f),1),
-      _player2(&playertexture2, sf::Vector2u(2, 2), 0.5, 400.0f, sf::Vector2f(400.0f, 725.0f),2),
-      wall1(&wallTexture, sf::Vector2f(10.0f, 800.0f), sf::Vector2f(750.0f, 400.0f)),
-      wall2(&wallTexture, sf::Vector2f(10.0f, 800.0f), sf::Vector2f(50.0f, 400.0f)),
-      net(&nettexture,sf::Vector2f(690,20),sf::Vector2f(400,400) ),
-      score1(&score1texture, sf::Vector2f(100, 100), sf::Vector2f(695, 300)),
-      score2(&score2texture, sf::Vector2f(100, 100), sf::Vector2f(695, 500)),
+    : _player1(&playertexture1, sf::Vector2u(2, 2), 0.5, 400.0f, sf::Vector2f(700.0f, 100.0f),1),
+      _player2(&playertexture2, sf::Vector2u(2, 2), 0.5, 400.0f, sf::Vector2f(700.0f, 900.0f),2),
+      wall1(&wallTexture, sf::Vector2f(15.0f, 1000.0f), sf::Vector2f(1150.0f, 500.0f)),
+      wall2(&wallTexture, sf::Vector2f(15.0f, 1000.0f), sf::Vector2f(250.0f, 500.0f)),
+      net(&nettexture,sf::Vector2f(885,20),sf::Vector2f(700,500) ),
+      score1(&score1texture, sf::Vector2f(100, 100), sf::Vector2f(1207.5f, 400)),
+      score2(&score2texture, sf::Vector2f(100, 100), sf::Vector2f(1207.5f, 600)),
       ball(&balltexture, sf::Vector2f(20,20),sf::Vector2f(200,200)),
       window(_window),
       view(_view)
     {
         playertexture1.loadFromFile("./txt/test1.png");
         playertexture2.loadFromFile("./txt/test2.png");
-        _player1 = player(&playertexture1, sf::Vector2u(2, 2), 0.5, 400.0f,sf::Vector2f(400.0f, 75.0f),1);
-        _player2 = player(&playertexture2, sf::Vector2u(2, 2), 0.5, 400.0f,sf::Vector2f(400.0f, 725.0f),2);
+        _player1 = player(&playertexture1, sf::Vector2u(2, 2), 0.5, 400.0f,sf::Vector2f(700.0f, 100.0f),1);
+        _player2 = player(&playertexture2, sf::Vector2u(2, 2), 0.5, 400.0f,sf::Vector2f(700.0f, 900.0f),2);
         wallTexture.loadFromFile("./txt/green.png");
         nettexture.loadFromFile("./txt/red.jpg");
         balltexture.loadFromFile("./txt/blue.png");
@@ -59,7 +59,7 @@ public:
         float col7 = static_cast<float>(ball.getcollider().check_collision(wall1.getcollider(), 1.0f));
         float col8 = static_cast<float>(ball.getcollider().check_collision(wall2.getcollider(), 1.0f));
 
-        if (counter1 == 3450 || counter2 == 3450)
+        if ((counter1 == 3450 || counter2 == 3450) || (counter1 == 1950 && counter2 == 150) || (counter1 == 150 && counter2 == 1950) || (counter1 == 2850 && counter2 == 450) || (counter1 == 450 && counter2 == 2850))
         {
             _glued = false;
 
@@ -81,11 +81,11 @@ public:
                 counter2 = 150;
             } else {
                 ball.setVelocity(sf::Vector2f(0.0f, 0.0f));
-                ball.setPosition(400.0f, 400.0f);
+                ball.setPosition(700.0f, 500.0f);
             }
         }
 
-        if((cur == 2 && (col7 != 0.0f || col8 != 0.0f)) || ball.getPosition().y > 800.0f)
+        if((cur == 2 && (col7 != 0.0f || col8 != 0.0f)) || ball.getPosition().y > 1000.0f)
         {
             startround = true;
             serves ++;
@@ -167,16 +167,16 @@ public:
         }
 
         if (col1 != 0.0f)
-            _player1.setPosition(695.0f);
+            _player1.setPosition(1092.5f);
 
         if (col2 != 0.0f)
-            _player1.setPosition(105.0f);
+            _player1.setPosition(307.5f);
 
         if (col3 != 0.0f)
-            _player2.setPosition(695.0f);
+            _player2.setPosition(1092.5f);
 
         if (col4 != 0.0f)
-            _player2.setPosition(105.0f);
+            _player2.setPosition(307.5f);
 
         if(!_glued && col5 != 0.0f)
         {
@@ -273,7 +273,7 @@ public:
             }
 
         }
-        view.setCenter(400, 400);
+        view.setCenter(700, 500);
         window.setView(view);
 
         _player1.draw(window);
