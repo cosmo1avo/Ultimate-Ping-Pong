@@ -36,7 +36,7 @@ private:
     wall score1;
     wall score2;
     wall gameselect;
-    boing *ball;
+    std::unique_ptr<boing> ball;
     bool startround = true;
     bool start = true;
     int ran = rand() %2;

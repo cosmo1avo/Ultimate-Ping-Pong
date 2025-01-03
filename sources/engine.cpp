@@ -26,7 +26,7 @@ engine::engine(sf::RenderWindow& _window, sf::View& _view)
         gameselecttexture.loadFromFile("./txt/gameselect.png");
         score1.settextoffset(150, 0, 214, 214);
         score2.settextoffset(150, 0, 214, 214);
-        ball = new basic(&balltexture, sf::Vector2f(20, 20), sf::Vector2f(200, 200));
+        ball = std::make_unique<basic>(&balltexture, sf::Vector2f(20, 20), sf::Vector2f(200, 200));
 
     }
 
@@ -64,22 +64,22 @@ engine::engine(sf::RenderWindow& _window, sf::View& _view)
             if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num2))
             {
                 gamemode = 2;
-                delete ball;
-                ball = new ricochet(&balltexture, sf::Vector2f(20, 20), sf::Vector2f(200, 200));
+                ball = std::make_unique<ricochet>(&balltexture, sf::Vector2f(20, 20), sf::Vector2f(200, 200));
+                ball = std::unique_ptr<boing>(ball->clone());
                 start = false;
             }
             if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num3))
             {
                 gamemode = 3;
-                delete ball;
-                ball = new decel(&balltexture, sf::Vector2f(20, 20), sf::Vector2f(200, 200));
+                ball = std::make_unique<decel>(&balltexture, sf::Vector2f(20, 20), sf::Vector2f(200, 200));
+                ball = std::unique_ptr<boing>(ball->clone());
                 start = false;
             }
             if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num4))
             {
                 gamemode = 4;
-                delete ball;
-                ball = new hockey(&balltexture, sf::Vector2f(20, 20), sf::Vector2f(200, 200));
+                ball = std::make_unique<hockey>(&balltexture, sf::Vector2f(20, 20), sf::Vector2f(200, 200));
+                ball = std::unique_ptr<boing>(ball->clone());
                 start = false;
             }
         }
