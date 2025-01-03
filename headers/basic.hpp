@@ -12,6 +12,4 @@ public:
 
     std::unique_ptr<boing> clone() const override;
 
-private:
-    float base;
 };

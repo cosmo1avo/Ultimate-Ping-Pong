@@ -9,7 +9,7 @@ void hockey::update(float deltatime)
 {
     boing::update(deltatime);
     sf::Vector2f speed = getSpeed();
-    if((getBody().getPosition().y < 839.0f &&  getBody().getPosition().y > 830.0f) || (getBody().getPosition().y < 170.0f &&  getBody().getPosition().y > 161.0f) && speed.y < 1000.0f)
+    if(((getBody().getPosition().y < 839.0f &&  getBody().getPosition().y > 830.0f) || (getBody().getPosition().y < 170.0f &&  getBody().getPosition().y > 161.0f)) && speed.y < 1000.0f)
     {
         base = speed.y;
         speed.y = 3*speed.y;
