@@ -3,7 +3,7 @@
 #include <memory>
 
 decel::decel(sf::Texture* texture, sf::Vector2f size, sf::Vector2f speed)
-    : boing(texture, size, speed) {}
+    : boing(texture, size, speed), base(0.0f) {}
 
 void decel::update(float deltatime)
 {
