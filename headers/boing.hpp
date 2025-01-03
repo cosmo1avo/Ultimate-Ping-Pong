@@ -1,74 +1,39 @@
 #pragma once
 #include "collider.hpp"
+#include <memory>
 
 class boing
 {
 public:
-    boing(sf::Texture* texture, sf::Vector2f size,sf::Vector2f speed)
-        : x(0), y(0), glue(false)
-    {
-        this->speed = speed;
-        body.setSize(size);
-        body.setOrigin(size / 2.0f);
-        body.setTexture(texture);
-        body.setPosition(400, 400);
-    }
+    boing(sf::Texture* texture, sf::Vector2f size,sf::Vector2f speed);
 
-    void update(float deltatime)
-    {
-        sf::Vector2f local_movement{ 0.0f, 0.0f };
-        if (!glue)
-        {
-            local_movement.x = speed.x * deltatime;
-            local_movement.y = speed.y * deltatime;
-            x += local_movement.x;
-            y += local_movement.y;
-            body.move(local_movement);
-        }
-    }
+    virtual ~boing() = default;
 
-    void draw(sf::RenderWindow& window)
-    {
-        window.draw(body);
-    }
+    virtual void update(float deltatime) = 0;
 
-    collider getcollider()
-    {
-        return collider(body);
-    }
+    virtual std::unique_ptr<boing> clone() const = 0;
 
-    void move(float dx, float dy)
-    {
-        body.move(dx, dy);
-    }
+    virtual void draw(sf::RenderWindow& window);
 
-    void setPosition(float _x, float _y)
-    {
-        body.setPosition(_x, _y);
-        this->x = _x;
-        this->y = _y;
-    }
+    collider getcollider();
 
-    sf::Vector2f getPosition() const
-    {
-        return body.getPosition();
-    }
+    void move(float dx, float dy);
 
-    void setVelocity(sf::Vector2f v)
-    {
-        speed = v;
-    }
+    void setPosition(float _x, float _y);
 
-    void attach()
-    {
-        glue = true;
-        speed = { 0.0f, 0.0f };
-    }
+    sf::Vector2f getPosition() const;
 
-    void deglue()
-    {
-        glue = false;
-    }
+    void setVelocity(sf::Vector2f v);
+
+    void attach();
+
+    void deglue();
+
+    const sf::RectangleShape& getBody() const;
+
+    sf::Vector2f getSpeed() const;
+
+    void setSpeed(const sf::Vector2f& newSpeed);
 
 private:
     sf::RectangleShape body;

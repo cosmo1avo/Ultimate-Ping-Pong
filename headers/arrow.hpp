@@ -4,23 +4,13 @@
 
 class arrow {
 public:
-    arrow() {
-        _arrow.setSize(sf::Vector2f(100, 5));
-        _arrow.setFillColor(sf::Color::Red);
-        _arrow.setOrigin(0, 2.5);
-    }
+    arrow();
 
-    void setPosition(const sf::Vector2f& position) {
-        _arrow.setPosition(position);
-    }
+    void setPosition(const sf::Vector2f& position);
 
-    void setRotation(float angle) {
-        _arrow.setRotation(angle);
-    }
+    void setRotation(float angle);
 
-    void draw(sf::RenderWindow& window) {
-        window.draw(_arrow);
-    }
+    void draw(sf::RenderWindow& window);
 
 
 private:

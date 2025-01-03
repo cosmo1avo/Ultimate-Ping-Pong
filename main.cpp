@@ -3,7 +3,6 @@
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
 #include <Helper.h>
-#include "headers/animation.hpp"
 #include "headers/player.hpp"
 #include "headers/global.hpp"
 #include "headers/resizeview.hpp"

@@ -59,6 +59,22 @@ add_executable(${PROJECT_NAME}
         headers/boing.hpp
         headers/arrow.hpp
         headers/speedmeter.hpp
+        sources/animation.cpp
+        sources/player.cpp
+        sources/collider.cpp
+        sources/arrow.cpp
+        sources/boing.cpp
+        sources/engine.cpp
+        sources/speedmeter.cpp
+        sources/wall.cpp
+        headers/ricochet.hpp
+        sources/ricochet.cpp
+        headers/decel.hpp
+        sources/decel.cpp
+        headers/hockey.hpp
+        sources/hockey.cpp
+        headers/basic.hpp
+        sources/basic.cpp
 )
 
 include(cmake/CompilerFlags.cmake)
