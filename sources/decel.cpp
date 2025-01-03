@@ -8,11 +8,11 @@ decel::decel(sf::Texture* texture, sf::Vector2f size, sf::Vector2f speed)
 void decel::update(float deltatime)
 {
     boing::update(deltatime);
-    sf::Vector2f speed = getSpeed();
+    sf::Vector2f speedd = getSpeed();
     if((getBody().getPosition().y < 839.0f &&  getBody().getPosition().y > 830.0f) || (getBody().getPosition().y < 170.0f &&  getBody().getPosition().y > 161.0f))
-        base = speed.x;
-    speed.x = speed.x - base / 50.0f;
-    setSpeed(speed);
+        base = speedd.x;
+    speedd.x = speedd.x - base / 50.0f;
+    setSpeed(speedd);
 }
 
 std::unique_ptr<boing> decel::clone() const

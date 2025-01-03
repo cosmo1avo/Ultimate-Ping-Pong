@@ -8,19 +8,19 @@ hockey::hockey(sf::Texture* texture, sf::Vector2f size, sf::Vector2f speed)
 void hockey::update(float deltatime)
 {
     boing::update(deltatime);
-    sf::Vector2f speed = getSpeed();
-    if(((getBody().getPosition().y < 839.0f &&  getBody().getPosition().y > 830.0f) || (getBody().getPosition().y < 170.0f &&  getBody().getPosition().y > 161.0f)) && speed.y < 1000.0f)
+    sf::Vector2f speedd = getSpeed();
+    if(((getBody().getPosition().y < 839.0f &&  getBody().getPosition().y > 830.0f) || (getBody().getPosition().y < 170.0f &&  getBody().getPosition().y > 161.0f)) && speedd.y < 1000.0f)
     {
-        base = speed.y;
-        speed.y = 3*speed.y;
+        base = speedd.y;
+        speedd.y = 3*speedd.y;
     }
 
     if(getBody().getPosition().y < 820.0f && getBody().getPosition().y > 180.0f)
     {
-        speed.y = speed.y - base/20.0f;
+        speedd.y = speedd.y - base/20.0f;
     }
 
-    setSpeed(speed);
+    setSpeed(speedd);
 }
 
 std::unique_ptr<boing> hockey::clone() const

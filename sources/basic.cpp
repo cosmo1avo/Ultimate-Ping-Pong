@@ -8,8 +8,8 @@ basic::basic(sf::Texture* texture, sf::Vector2f size, sf::Vector2f speed)
 void basic::update(float deltatime)
 {
     boing::update(deltatime);
-    sf::Vector2f speed = getSpeed();
-    setSpeed(speed);
+    sf::Vector2f speedd = getSpeed();
+    setSpeed(speedd);
 }
 
 std::unique_ptr<boing> basic::clone() const
