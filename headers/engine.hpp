@@ -41,12 +41,16 @@ private:
     wall gameselect;
     wall out1;
     wall out2;
+    basic boost;
     std::unique_ptr<boing> ball;
     bool startround = true;
     bool start = true;
     bool turn = false;
     int ran = rand() %2;
+    float ranposx = rand() %600 + 400;
+    float ranposy = rand() %400 + 300;
     int cur = 0;
+    int ap =0;
     float ballspeed = 75.0f;
     int speedselect = 0;
     int counter1 = 3450;

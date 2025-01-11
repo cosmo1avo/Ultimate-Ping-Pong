@@ -19,3 +19,8 @@ std::unique_ptr<boing> decel::clone() const
 {
     return std::make_unique<decel>(*this);
 }
+
+void decel::drawShape(sf::RenderWindow& window) const
+{
+    boing::drawShape(window);
+}

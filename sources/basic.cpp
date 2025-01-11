@@ -16,3 +16,8 @@ std::unique_ptr<boing> basic::clone() const
 {
     return std::make_unique<basic>(*this);
 }
+
+void basic::drawShape(sf::RenderWindow& window) const
+{
+    boing::drawShape(window);
+}

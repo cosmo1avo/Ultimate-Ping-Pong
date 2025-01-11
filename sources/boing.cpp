@@ -24,10 +24,15 @@ void boing::update(float deltatime)
      }
  }
 
-void boing::draw(sf::RenderWindow& window)
- {
-     window.draw(body);
- }
+void boing::draw(sf::RenderWindow& window) const
+{
+    drawShape(window);
+}
+
+void boing::drawShape(sf::RenderWindow& window) const
+{
+    window.draw(body);
+}
 
 collider boing::getcollider()
  {

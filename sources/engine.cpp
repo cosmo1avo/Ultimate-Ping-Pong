@@ -13,6 +13,7 @@ engine::engine(sf::RenderWindow& _window, sf::View& _view)
       gameselect(&gameselecttexture,sf::Vector2f(400,40),sf::Vector2f(700,500)),
       out1(&wallTexture, sf::Vector2f(242.5f, 1000.0f), sf::Vector2f(1278.75f, 500.0f)),
       out2(&wallTexture, sf::Vector2f(242.5f, 1000.0f), sf::Vector2f(121.25f, 500.0f)),
+      boost(&gameselecttexture, sf::Vector2f(20, 20), sf::Vector2f(0,0)),
       window(_window),
       view(_view)
     {
@@ -53,6 +54,9 @@ engine::engine(sf::RenderWindow& _window, sf::View& _view)
         _player1.update(deltatime);
         _player2.update(deltatime);
 
+        if(boost.getPosition() != sf::Vector2f(2000, 2000))
+            boost.setPosition(ranposx, ranposy);
+
         static bool _glued = false;
         static arrow arrow;
         static speedmeter speedmeter;
@@ -71,6 +75,7 @@ engine::engine(sf::RenderWindow& _window, sf::View& _view)
         float col6 = static_cast<float>(ball->getcollider().check_collision(_player2.getcollider(), 1.0f));
         float col7 = static_cast<float>(ball->getcollider().check_collision(wall1.getcollider(), 1.0f));
         float col8 = static_cast<float>(ball->getcollider().check_collision(wall2.getcollider(), 1.0f));
+        float col9 = static_cast<float>(ball->getcollider().check_collision(boost.getcollider(), 0.0f));
 
         if(start)
         {
@@ -201,6 +206,9 @@ engine::engine(sf::RenderWindow& _window, sf::View& _view)
                 ball->setPosition(_player1.getPlayerPosition().x, _player1.getPlayerPosition().y);
             else
                 ball->setPosition(_player2.getPlayerPosition().x, _player2.getPlayerPosition().y);
+            ap = rand() %10;
+            if(ap == 7)
+                boost.setPosition(ranposx, ranposy);
         }
 
         if (serves % 5 == 0 && serves != 0 && startround == true)
@@ -220,6 +228,14 @@ engine::engine(sf::RenderWindow& _window, sf::View& _view)
 
         if (col4 != 0.0f)
             _player2.setPosition(307.5f);
+        if(col9 != 0.0f)
+        {
+            velocity.x = ball->getSpeed().x * 3;
+            velocity.y = ball->getSpeed().y * 3;
+            ball->setVelocity(sf::Vector2f(velocity.x, velocity.y));
+            boost.setPosition(2000.0f, 2000.0f);
+
+        }
 
         if(!_glued && col5 != 0.0f)
         {
@@ -355,6 +371,7 @@ engine::engine(sf::RenderWindow& _window, sf::View& _view)
             out2.draw(window);
             net.draw(window);
             ball->draw(window);
+            boost.draw(window);
 
             if (serves != 0)
             {

@@ -13,7 +13,9 @@ public:
 
     virtual std::unique_ptr<boing> clone() const = 0;
 
-    virtual void draw(sf::RenderWindow& window);
+    void draw(sf::RenderWindow& window) const;
+
+    virtual void drawShape(sf::RenderWindow& window) const;
 
     collider getcollider();
 

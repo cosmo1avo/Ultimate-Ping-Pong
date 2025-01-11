@@ -12,4 +12,6 @@ public:
 
     std::unique_ptr<boing> clone() const override;
 
+    void drawShape(sf::RenderWindow& window) const override;
+
 };

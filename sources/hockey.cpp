@@ -27,3 +27,9 @@ std::unique_ptr<boing> hockey::clone() const
 {
     return std::make_unique<hockey>(*this);
 }
+
+void hockey::drawShape(sf::RenderWindow& window) const
+{
+    boing::drawShape(window);
+}
+

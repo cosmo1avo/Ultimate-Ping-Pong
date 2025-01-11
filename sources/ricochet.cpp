@@ -21,4 +21,9 @@ std::unique_ptr<boing> ricochet::clone() const
     return std::make_unique<ricochet>(*this);
 }
 
+void ricochet::drawShape(sf::RenderWindow& window) const
+{
+    boing::drawShape(window);
+}
+
 
