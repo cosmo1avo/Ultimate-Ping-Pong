@@ -31,12 +31,12 @@ private:
     player _player2;
     wall wall1;
     wall wall2;
-    wall out1;
-    wall out2;
     wall net;
     wall score1;
     wall score2;
     wall gameselect;
+    wall out1;
+    wall out2;
     std::unique_ptr<boing> ball;
     bool startround = true;
     bool start = true;
