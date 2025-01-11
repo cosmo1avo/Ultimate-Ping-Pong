@@ -23,7 +23,6 @@ private:
     sf::Texture playertexture1;
     sf::Texture playertexture2;
     sf::Texture wallTexture;
-    sf::Texture nettexture;
     sf::Texture balltexture;
     sf::Texture score1texture;
     sf::Texture score2texture;
@@ -32,6 +31,8 @@ private:
     player _player2;
     wall wall1;
     wall wall2;
+    wall out1;
+    wall out2;
     wall net;
     wall score1;
     wall score2;

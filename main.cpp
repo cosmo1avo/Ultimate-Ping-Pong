@@ -38,7 +38,7 @@ int main()
          //std::cout << _engine << std::endl;
       }
 
-      window.clear(sf::Color::Black);
+      window.clear(sf::Color(140, 165, 174, 255));
       _engine.update(deltatime);
       window.setView(view);
       window.display();

@@ -7,20 +7,21 @@ engine::engine(sf::RenderWindow& _window, sf::View& _view)
       _player2(&playertexture2, sf::Vector2u(2, 2), 0.5, 400.0f, sf::Vector2f(700.0f, 900.0f),2),
       wall1(&wallTexture, sf::Vector2f(15.0f, 1000.0f), sf::Vector2f(1150.0f, 500.0f)),
       wall2(&wallTexture, sf::Vector2f(15.0f, 1000.0f), sf::Vector2f(250.0f, 500.0f)),
-      net(&nettexture,sf::Vector2f(885,20),sf::Vector2f(700,500) ),
+      net(&wallTexture,sf::Vector2f(885,20),sf::Vector2f(700,500) ),
       score1(&score1texture, sf::Vector2f(100, 100), sf::Vector2f(1207.5f, 400)),
       score2(&score2texture, sf::Vector2f(100, 100), sf::Vector2f(1207.5f, 600)),
       gameselect(&gameselecttexture,sf::Vector2f(400,40),sf::Vector2f(700,500)),
+      out1(&wallTexture, sf::Vector2f(242.5f, 1000.0f), sf::Vector2f(1278.75f, 500.0f)),
+      out2(&wallTexture, sf::Vector2f(242.5f, 1000.0f), sf::Vector2f(121.25f, 500.0f)),
       window(_window),
       view(_view)
     {
-        playertexture1.loadFromFile("./txt/test1.png");
-        playertexture2.loadFromFile("./txt/test2.png");
+        playertexture1.loadFromFile("./txt/paleta1.png");
+        playertexture2.loadFromFile("./txt/paleta2.png");
         _player1 = player(&playertexture1, sf::Vector2u(2, 2), 0.5, 400.0f,sf::Vector2f(700.0f, 100.0f),1);
         _player2 = player(&playertexture2, sf::Vector2u(2, 2), 0.5, 400.0f,sf::Vector2f(700.0f, 900.0f),2);
         wallTexture.loadFromFile("./txt/green.png");
-        nettexture.loadFromFile("./txt/red.jpg");
-        balltexture.loadFromFile("./txt/blue.png");
+        balltexture.loadFromFile("./txt/ball.png");
         score1texture.loadFromFile("./txt/tabel.png");
         score2texture.loadFromFile("./txt/tabel.png");
         gameselecttexture.loadFromFile("./txt/gameselect.png");
@@ -315,6 +316,8 @@ engine::engine(sf::RenderWindow& _window, sf::View& _view)
             _player2.draw(window);
             wall1.draw(window);
             wall2.draw(window);
+            out1.draw(window);
+            out2.draw(window);
             net.draw(window);
             ball->draw(window);
 
