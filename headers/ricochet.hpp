@@ -5,7 +5,7 @@
 class ricochet : public boing
 {
 public:
-    ricochet(sf::Texture* texture, sf::Vector2f size, sf::Vector2f speed);
+    ricochet(const sf::Texture* texture, sf::Vector2f size, sf::Vector2f speed);
 
     void update(float deltatime) override;
 

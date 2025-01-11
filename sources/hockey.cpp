@@ -2,7 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include <memory>
 
-hockey::hockey(sf::Texture* texture, sf::Vector2f size, sf::Vector2f speed)
+hockey::hockey(const sf::Texture* texture, sf::Vector2f size, sf::Vector2f speed)
 : boing(texture, size, speed), base(0.0f) {}
 
 void hockey::update(float deltatime)
@@ -12,7 +12,7 @@ void hockey::update(float deltatime)
     if(((getBody().getPosition().y < 839.0f &&  getBody().getPosition().y > 830.0f) || (getBody().getPosition().y < 170.0f &&  getBody().getPosition().y > 161.0f)) && speedd.y < 1000.0f)
     {
         base = speedd.y;
-        speedd.y = 3*speedd.y;
+        speedd.y = factor * speedd.y;
     }
 
     if(getBody().getPosition().y < 820.0f && getBody().getPosition().y > 180.0f)

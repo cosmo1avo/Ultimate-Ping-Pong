@@ -8,6 +8,10 @@
 #include "decel.hpp"
 #include "hockey.hpp"
 #include "basic.hpp"
+#include "engine_exceptions.hpp"
+#include "texture_load_exception.hpp"
+#include "out_of_bounds_exception.hpp"
+#include "swtich.hpp"
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
 
@@ -40,6 +44,7 @@ private:
     std::unique_ptr<boing> ball;
     bool startround = true;
     bool start = true;
+    bool turn = false;
     int ran = rand() %2;
     int cur = 0;
     float ballspeed = 75.0f;

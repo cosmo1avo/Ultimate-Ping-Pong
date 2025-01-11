@@ -2,7 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include <memory>
 
-ricochet::ricochet(sf::Texture* texture, sf::Vector2f size, sf::Vector2f speed)
+ricochet::ricochet(const sf::Texture* texture, sf::Vector2f size, sf::Vector2f speed)
 : boing(texture, size, speed) {}
 
 void ricochet::update(float deltatime)

@@ -25,6 +25,22 @@ engine::engine(sf::RenderWindow& _window, sf::View& _view)
         score1texture.loadFromFile("./txt/tabel.png");
         score2texture.loadFromFile("./txt/tabel.png");
         gameselecttexture.loadFromFile("./txt/gameselect.png");
+
+        if (!playertexture1.loadFromFile("./txt/paleta1.png"))
+            throw texture_load_exception("Failed to load texture for player 1.");
+        if (!playertexture2.loadFromFile("./txt/paleta2.png"))
+            throw texture_load_exception("Failed to load texture for player 2.");
+        if (!wallTexture.loadFromFile("./txt/green.png"))
+            throw texture_load_exception("Failed to load wall texture.");
+        if (!balltexture.loadFromFile("./txt/ball.png"))
+            throw texture_load_exception("Failed to load ball texture.");
+        if (!score1texture.loadFromFile("./txt/tabel.png"))
+            throw texture_load_exception("Failed to load score1 texture.");
+        if (!score2texture.loadFromFile("./txt/tabel.png"))
+            throw texture_load_exception("Failed to load score2 texture.");
+        if (!gameselecttexture.loadFromFile("./txt/gameselect.png"))
+            throw texture_load_exception("Failed to load game select texture.");
+
         score1.settextoffset(150, 0, 214, 214);
         score2.settextoffset(150, 0, 214, 214);
         ball = std::make_unique<basic>(&balltexture, sf::Vector2f(20, 20), sf::Vector2f(200, 200));
@@ -44,6 +60,9 @@ engine::engine(sf::RenderWindow& _window, sf::View& _view)
 
         ball->update(deltatime);
 
+        if (ball->getPosition().x < 200.0f || ball->getPosition().x > 1200.0f)
+            throw out_of_bounds_exception("Ball is out of bounds.");
+
         float col1 = static_cast<float>(wall1.getcollider().check_collision(_player1.getcollider(), 1.0f));
         float col2 = static_cast<float>(wall2.getcollider().check_collision(_player1.getcollider(), 1.0f));
         float col3 = static_cast<float>(wall1.getcollider().check_collision(_player2.getcollider(), 1.0f));
@@ -60,27 +79,25 @@ engine::engine(sf::RenderWindow& _window, sf::View& _view)
             if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num1))
             {
                 gamemode = 1;
+                ball = switcher::switchBall(gamemode, &balltexture);
                 start = false;
             }
             if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num2))
             {
                 gamemode = 2;
-                ball = std::make_unique<ricochet>(&balltexture, sf::Vector2f(20, 20), sf::Vector2f(200, 200));
-                ball = std::unique_ptr<boing>(ball->clone());
+                ball = switcher::switchBall(gamemode, &balltexture);
                 start = false;
             }
             if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num3))
             {
                 gamemode = 3;
-                ball = std::make_unique<decel>(&balltexture, sf::Vector2f(20, 20), sf::Vector2f(200, 200));
-                ball = std::unique_ptr<boing>(ball->clone());
+                ball = switcher::switchBall(gamemode, &balltexture);
                 start = false;
             }
             if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num4))
             {
                 gamemode = 4;
-                ball = std::make_unique<hockey>(&balltexture, sf::Vector2f(20, 20), sf::Vector2f(200, 200));
-                ball = std::unique_ptr<boing>(ball->clone());
+                ball = switcher::switchBall(gamemode, &balltexture);
                 start = false;
             }
         }
@@ -246,8 +263,19 @@ engine::engine(sf::RenderWindow& _window, sf::View& _view)
                 speedmeter.setX(ball->getPosition().x +50);
                 speedmeter.setY(ball->getPosition().y + 200 - ballspeed/4);
 
-                if ((sf::Keyboard::isKeyPressed(sf::Keyboard::Q) && cur == 1) || (sf::Keyboard::isKeyPressed(sf::Keyboard::N) && cur == 2))
-                    speedselect = 1;
+                if ((sf::Keyboard::isKeyPressed(sf::Keyboard::Q) && cur == 1) || (sf::Keyboard::isKeyPressed(sf::Keyboard::P) && cur == 2))
+                {
+                    if(!turn)
+                    {
+                        turn = true;
+                        speedselect = 1;
+                    }
+                }
+                else
+                {
+                    turn = false;
+                }
+
             }
             else if(speedselect == 1)
             {
@@ -282,18 +310,25 @@ engine::engine(sf::RenderWindow& _window, sf::View& _view)
                 }
                 arrow.setPosition(ball->getPosition());
                 arrow.setRotation(angle);
-
-                if ((sf::Keyboard::isKeyPressed(sf::Keyboard::E) && cur ==1) || (sf::Keyboard::isKeyPressed(sf::Keyboard::M) && cur ==2))
+                if ((sf::Keyboard::isKeyPressed(sf::Keyboard::Q) && cur ==1) || (sf::Keyboard::isKeyPressed(sf::Keyboard::P) && cur ==2))
                 {
-                    float radians = angle * 3.14159f / 180.0f;
-                    velocity = sf::Vector2f(std::cos(radians) * ballspeed,std::sin(radians) * ballspeed );
-                    ball->setVelocity(velocity);
-                    ball->deglue();
-                    _glued = false;
+                    if(!turn)
+                    {
+                        turn = true;
+                        float radians = angle * 3.14159f / 180.0f;
+                        velocity = sf::Vector2f(std::cos(radians) * ballspeed,std::sin(radians) * ballspeed );
+                        ball->setVelocity(velocity);
+                        ball->deglue();
+                        _glued = false;
 
-                    _player1.blocaj(false);
-                    _player2.blocaj(false);
-                    speedselect = 0;
+                        _player1.blocaj(false);
+                        _player2.blocaj(false);
+                        speedselect = 0;
+                    }
+                }
+                else
+                {
+                    turn = false;
                 }
 
             }

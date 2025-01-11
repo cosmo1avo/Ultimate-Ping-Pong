@@ -6,7 +6,7 @@
 class decel : public boing
 {
 public:
-    decel(sf::Texture* texture, sf::Vector2f size, sf::Vector2f speed);
+    decel(const sf::Texture* texture, sf::Vector2f size, sf::Vector2f speed);
 
     void update(float deltatime) override;
 

@@ -5,7 +5,7 @@
 class hockey : public boing
 {
 public:
-    hockey(sf::Texture* texture, sf::Vector2f size, sf::Vector2f speed);
+    hockey(const sf::Texture* texture, sf::Vector2f size, sf::Vector2f speed);
 
     void update(float deltatime) override;
 
@@ -13,4 +13,5 @@ public:
 
 private:
     float base;
+    float factor = rand() %3 + 2;
 };

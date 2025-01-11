@@ -1,7 +1,7 @@
 #include "../headers/boing.hpp"
 #include <SFML/Graphics.hpp>
 
-boing::boing(sf::Texture* texture, sf::Vector2f size,sf::Vector2f speed)
+boing::boing(const sf::Texture* texture, sf::Vector2f size,sf::Vector2f speed)
 : x(0), y(0), glue(false)
  {
      this->speed = speed;

@@ -75,6 +75,12 @@ add_executable(${PROJECT_NAME}
         sources/hockey.cpp
         headers/basic.hpp
         sources/basic.cpp
+        headers/engine_exceptions.hpp
+        headers/texture_load_exception.hpp
+        headers/out_of_bounds_exception.hpp
+        headers/swtich.hpp
+        sources/switch.cpp
+        headers/switch_exception.hpp
 )
 
 include(cmake/CompilerFlags.cmake)

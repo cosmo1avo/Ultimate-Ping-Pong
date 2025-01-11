@@ -5,7 +5,7 @@
 class boing
 {
 public:
-    boing(sf::Texture* texture, sf::Vector2f size,sf::Vector2f speed);
+    boing(const sf::Texture* texture, sf::Vector2f size,sf::Vector2f speed);
 
     virtual ~boing() = default;
 

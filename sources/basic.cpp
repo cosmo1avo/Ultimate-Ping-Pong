@@ -2,7 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include <memory>
 
-basic::basic(sf::Texture* texture, sf::Vector2f size, sf::Vector2f speed)
+basic::basic(const sf::Texture* texture, sf::Vector2f size, sf::Vector2f speed)
     : boing(texture, size, speed) {}
 
 void basic::update(float deltatime)
